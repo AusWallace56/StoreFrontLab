@@ -61,7 +61,7 @@
                             <li class="scroll-to-section"><a href="#kids">Kid's</a></li>
                             <li class="submenu">
                                 <a href="javascript:;">Account</a>
-                                    @Html.Partial("_LoginPartial")
+                                @Html.Partial("_LoginPartial")
                             </li>
                         </ul>
                         <a class='menu-trigger'>
@@ -180,6 +180,6 @@
         });
 
     </script>
-
+    @RenderSection("scripts", false)
 </body>
 </html>
