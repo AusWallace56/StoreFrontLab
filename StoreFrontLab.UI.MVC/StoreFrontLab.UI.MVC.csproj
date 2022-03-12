@@ -226,6 +226,7 @@
     <Content Include="Content\assets\images\service-03.jpg" />
     <Content Include="Content\assets\images\single-product-01.jpg" />
     <Content Include="Content\assets\images\single-product-02.jpg" />
+    <Content Include="Content\assets\images\StorefrontLogoV2.png" />
     <Content Include="Content\assets\images\team-member-01.jpg" />
     <Content Include="Content\assets\images\team-member-02.jpg" />
     <Content Include="Content\assets\images\team-member-03.jpg" />
