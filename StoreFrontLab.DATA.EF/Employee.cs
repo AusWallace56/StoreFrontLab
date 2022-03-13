@@ -24,6 +24,7 @@ namespace StoreFrontLab.DATA.EF
         public string EmployeeName { get; set; }
         public Nullable<int> DirectReportID { get; set; }
         public int DepartmentID { get; set; }
+        public string Title { get; set; }
     
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
