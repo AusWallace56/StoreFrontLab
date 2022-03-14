@@ -35,6 +35,10 @@ namespace StoreFrontLab.DATA.EF//.StoreFrontMetadata
         [UIHint("MultilineText")]
         [DisplayFormat(NullDisplayText = "[-N/A-]")]
         public string Description { get; set; }
+
+        [StringLength(100, ErrorMessage = "* Must be 100 characters or less")]
+        [DisplayFormat(NullDisplayText = "[-N/A-]")]
+        public string Image { get; set; }
     }
 
     [MetadataType(typeof(ProductMetaData))]
