@@ -21,6 +21,7 @@ namespace StoreFrontLab.DATA.EF
         public int StockStatusID { get; set; }
         public int Quantity { get; set; }
         public string Description { get; set; }
+        public string Image { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual StockStatus StockStatus { get; set; }
