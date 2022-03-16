@@ -77,7 +77,8 @@ namespace StoreFrontLab.DATA.EF//.StoreFrontMetadata
 
     public class DepartmentMetadata
     {
-        //public int DepartmentID { get; set; }
+        [Display(Name = "Direct Report")]
+        public int DepartmentID { get; set; }
 
         [Required(ErrorMessage = "*")]
         [StringLength(50, ErrorMessage = "* Must be 50 characters or less")]

@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="~/Content/assets/css/owl-carousel.css">
 
     <link rel="stylesheet" href="~/Content/assets/css/lightbox.css">
+
+    <link rel="stylesheet" href="~/Content/assets/Custom.css" />
     <!--
 
     TemplateMo 571 Hexashop
@@ -44,7 +46,7 @@
     <!-- ***** Preloader End ***** -->
     <!-- ***** Header Area Start ***** -->
     <header class="header-area header-sticky">
-        <div class="container">
+        <div class="container" id="navcontainer">
             <div class="row">
                 <div class="col-12">
                     <nav class="main-nav">
@@ -56,13 +58,25 @@
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                            <li><a href="@Url.Action("Index", "Products")">Products</a></li>
                             <li><a href="@Url.Action("About","Home")">About</a></li>
-                            <li><a href="@Url.Action("Contact","Home")">Contact Us</a></li>
-                            <li class="scroll-to-section"><a href="#kids">Kid's</a></li>
-                            <li class="submenu">
-                                <a href="javascript:;">Account</a>
-                                @Html.Partial("_LoginPartial")
-                            </li>
+                            <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li><a href="@Url.Action("Index", "Employees")">Employees</a></li>
+                            }
+                            @Html.Partial("_LoginPartial")
+
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="submenu">
+                                    <a href="javascript:;">Admin</a>
+                                    <ul>
+                                        <li><a href="@Url.Action("Index","UsersAdmin")">Users Admin</a></li>
+                                        <li><a href="@Url.Action("Index","RolesAdmin")">Roles Admin</a></li>
+                                    </ul>
+                                </li>
+                            }
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -74,9 +88,9 @@
         </div>
     </header>
     <!-- ***** Header Area End ***** -->
-    <div id="mainContent">
+    @*<div id="mainContent">*@
         @RenderBody()
-    </div>
+    @*</div>*@
     <!-- ***** Footer Start ***** -->
     <footer>
         <div class="container">
