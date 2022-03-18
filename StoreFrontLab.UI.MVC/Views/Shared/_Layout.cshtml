@@ -24,6 +24,9 @@
     <link rel="stylesheet" href="~/Content/assets/css/lightbox.css">
 
     <link rel="stylesheet" href="~/Content/assets/Custom.css" />
+
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css">
     <!--
 
     TemplateMo 571 Hexashop
@@ -61,6 +64,37 @@
                             <li><a href="@Url.Action("Index", "Products")">Products</a></li>
                             <li><a href="@Url.Action("About","Home")">About</a></li>
                             <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
+                            <li>
+                                @{
+                                    Dictionary<int, StoreFrontLab.UI.MVC.Models.CartItemViewModel> products =
+                                        (Dictionary<int, StoreFrontLab.UI.MVC.Models.CartItemViewModel>)Session["cart"];
+                                }
+
+                                @if (Session["cart"] != null && ((Dictionary<int, StoreFrontLab.UI.MVC.Models.CartItemViewModel>)Session["cart"]).Count > 0)
+                                {
+                                    var productCount = products.Sum(p => p.Value.Qty);
+
+                                    <a href="/ShoppingCart/Index">
+                                        Cart<i class="fa fa-shopping-cart"></i>
+                                        <sup style=" 
+                                                    color: white;
+                                                    background-color: #9C95C7;
+                                                    border-radius: 50%;
+                                                    display: inline-block;
+                                                    height: .75em;
+                                                    padding: .75em;
+                                                    text-align: center;">
+                                            @productCount
+
+                                        </sup>
+                                    </a>
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Cart", "Index", "ShoppingCart")
+                                }
+                            </li>
+
                             @if (User.IsInRole("Admin"))
                             {
                                 <li><a href="@Url.Action("Index", "Employees")">Employees</a></li>

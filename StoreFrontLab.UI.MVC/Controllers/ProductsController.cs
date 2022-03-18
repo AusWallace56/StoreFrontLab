@@ -7,6 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using StoreFrontLab.DATA.EF;
+using PagedList;
+using PagedList.Mvc;
+using StoreFrontLab.UI.MVC.Models;
 
 namespace StoreFrontLab.UI.MVC.Controllers
 {
@@ -15,10 +18,20 @@ namespace StoreFrontLab.UI.MVC.Controllers
         private StoreFrontEntities db = new StoreFrontEntities();
 
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(string searchFilter, int page = 1)
         {
-            var products = db.Products.Include(p => p.Category).Include(p => p.StockStatus);
-            return View(products.ToList());
+            int pageSize = 9;
+            var products = db.Products.Include(p => p.Category).OrderBy(p => p.CategoryID).ToList();
+            if (!String.IsNullOrEmpty(searchFilter))
+            {
+                products = (from p in products
+                            where p.Category.CategoryName.ToLower().Contains(searchFilter.ToLower())
+                            select p).ToList();
+
+                //products = db.Categories.Where(p => p.CategoryName.ToLower().Contains(searchFilter.ToLower()).ToList();
+            }
+            ViewBag.SearchFilter = searchFilter;
+            return View(products.ToPagedList(page, pageSize));
         }
 
         // GET: Products/Details/5
@@ -187,5 +200,46 @@ namespace StoreFrontLab.UI.MVC.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        #region Add To Cart
+
+        public ActionResult AddToCart(int qty, int productID)
+        {
+            Dictionary<int, CartItemViewModel> shoppingCart = null;
+
+            if (Session["cart"] != null)
+            {
+                shoppingCart = (Dictionary<int, CartItemViewModel>)Session["cart"];
+            }
+            else
+            {
+                shoppingCart = new Dictionary<int, CartItemViewModel>();
+            }
+
+            Product item = db.Products.Where(i => i.ProductID == productID).FirstOrDefault();
+
+            if (item == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                CartItemViewModel prod = new CartItemViewModel(qty, item);
+
+                if (shoppingCart.ContainsKey(item.ProductID))
+                {
+                    shoppingCart[item.ProductID].Qty += qty;
+                }
+                else
+                {
+                    shoppingCart.Add(item.ProductID, prod);
+                }
+                Session["cart"] = shoppingCart;
+            }
+            return RedirectToAction("Index", "ShoppingCart");
+        }
+
+        #endregion
     }
 }

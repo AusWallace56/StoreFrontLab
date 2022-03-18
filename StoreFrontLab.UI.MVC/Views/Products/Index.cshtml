@@ -1,5 +1,5 @@
-﻿@model IEnumerable<StoreFrontLab.DATA.EF.Product>
-
+﻿@model PagedList.IPagedList<StoreFrontLab.DATA.EF.Product>
+@using PagedList.Mvc
 @{
     ViewBag.Title = "Products";
 }
@@ -11,28 +11,55 @@
         @Html.ActionLink("Create New", "Create")
     </p>
 }
+    <div class="row panel panel-success" style="padding-top: 3em;">
+        <br />
+        <form method="get" action="/Products/Index" class="form-horizontal pull-left">
+            <div class="form-group">
+                <div class="col-xs-offset-1 col-xs-11 col-sm-2">
+                    <label for="searchFilter">Search Category</label>
+                </div>
+                <div class="col-xs-offset-1 col-xs-11 col-sm-5">
+                    <input type="text" name="searchFilter" />
+                </div>
+                <div class="col-xs-offset-1 col-xs-11 col-sm-2">
+                    <input type="submit" value="Go!" class="btn btn-primary" />
+                </div>
+                @if (ViewBag.ResultCount != null)
+                {
+                    <div class="col-xs-offset-1 col-xs-11 col-sm-12">
+                        <br />
+                        <p>Your search returned @ViewBag.ResultCount results.</p>
+                    </div>
+                }
+
+            </div>
+        </form>
+    </div>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchFilter = ViewBag.SearchFilter}))
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ProductName)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().ProductName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Quantity)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Quantity)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CategoryID)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().CategoryID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StockStatusID)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().StockStatusID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Image)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Image)
         </th>
         <th></th>
     </tr>
