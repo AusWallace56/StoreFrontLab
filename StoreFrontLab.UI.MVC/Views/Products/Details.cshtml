@@ -1,78 +1,40 @@
 ﻿@model StoreFrontLab.DATA.EF.Product
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = $"{Model.ProductName}";
 }
-
-<h2>Details</h2>
-
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProductName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Category.CategoryName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Category.CategoryName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StockStatus.StockStatusName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StockStatus.StockStatusName)
-        </dd>
-        <dt>
-            <label>Quantity: </label>
-        </dt>
-        <dd>
-            @using (Html.BeginForm("AddToCart", "Products", new { productID = Model.ProductID }, FormMethod.Post))
-            {
-                @Html.HiddenFor(x => x.ProductID)
-                <span class="label" style="color: #b200ff;">Quantity</span>
-                @Html.TextBox("Qty", 1, new { @class = "form-control", @style = "max-width: 50px; display: inline;"})
-                <input type="submit" value="Add to Cart" class="btn btn-primary" name="qty" />
-            }
-
-        </dd>
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<h2 style="padding-top: 3.5em; text-align: center;">@ViewBag.Title</h2>
+<section class="section" id="product">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="left-images">
+                    <img style="padding-right: 1em;" src="~/Content/assets/images/products/@Model.Image" alt="@Model.ProductName">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="right-content">
+                    <h4>@Model.ProductName</h4>
+                    <span class="price">@Html.DisplayFor(model => model.Price)</span>
+                    <ul class="stars">
+                        <li>@Html.DisplayFor(model => model.StockStatus.StockStatusName)</li>
+                        <li>@Model.Quantity</li>
+                    </ul>
+                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod kon tempor incididunt ut labore.</span>
+                    <div class="quote">
+                        <i class="fa fa-quote-left"></i><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiuski smod.</p>
+                    </div>
+                    <div class="main-border-button">
+                        @using (Html.BeginForm("AddToCart", "Products", new { productID = Model.ProductID }, FormMethod.Post))
+                        {
+                            @Html.HiddenFor(x => x.ProductID)
+                            <span class="label" style="color: #b200ff;">Quantity</span>
+                            @Html.TextBox("Qty", 1, new { @class = "form-control", @style = "max-width: 50px; display: inline;" })
+                            <input type="submit" value="Add to Cart" class="main-border-button" name="qty" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
