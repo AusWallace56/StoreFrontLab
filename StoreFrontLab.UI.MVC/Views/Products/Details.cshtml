@@ -3,8 +3,7 @@
 @{
     ViewBag.Title = $"{Model.ProductName}";
 }
-<h2 style="padding-top: 3.5em; text-align: center;">@ViewBag.Title</h2>
-<section class="section" id="product">
+<section class="section" id="product" style="padding-top: 3.5em;">
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
@@ -16,9 +15,11 @@
                 <div class="right-content">
                     <h4>@Model.ProductName</h4>
                     <span class="price">@Html.DisplayFor(model => model.Price)</span>
+                    <ul class="stars2">
+                        @Html.DisplayFor(model => model.StockStatus.StockStatusName)
+                    </ul>
                     <ul class="stars">
-                        <li>@Html.DisplayFor(model => model.StockStatus.StockStatusName)</li>
-                        <li>@Model.Quantity</li>
+                        Quantity: @Model.Quantity
                     </ul>
                     <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod kon tempor incididunt ut labore.</span>
                     <div class="quote">
@@ -33,6 +34,14 @@
                             <input type="submit" value="Add to Cart" class="main-border-button" name="qty" />
                         }
                     </div>
+                    @Html.ActionLink("Back to Products", "Index", new { @class = "btn btn-primary" })
+                    @if (User.IsInRole("Admin"))
+                    {
+                    <div>
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id= Model.ProductID })
+                    </div>
+                    }
                 </div>
             </div>
         </div>
