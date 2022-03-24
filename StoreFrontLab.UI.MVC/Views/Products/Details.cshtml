@@ -21,26 +21,24 @@
                     <ul class="stars">
                         Quantity: @Model.Quantity
                     </ul>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod kon tempor incididunt ut labore.</span>
-                    <div class="quote">
-                        <i class="fa fa-quote-left"></i><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiuski smod.</p>
-                    </div>
+                    <span>@Model.Description</span>
+
                     <div class="main-border-button">
                         @using (Html.BeginForm("AddToCart", "Products", new { productID = Model.ProductID }, FormMethod.Post))
                         {
                             @Html.HiddenFor(x => x.ProductID)
-                            <span class="label" style="color: #b200ff;">Quantity</span>
-                            @Html.TextBox("Qty", 1, new { @class = "form-control", @style = "max-width: 50px; display: inline;" })
-                            <input type="submit" value="Add to Cart" class="main-border-button" name="qty" />
+                            <span class="label">Quantity</span>
+                            @Html.TextBox("Qty", 1, new { @class = "form-control", @style = "max-width: 50px; display: inline; margin-right: 1em;" })
+                            <input type="submit" value="Add to Cart" class="btn" name="qty" />
                         }
                     </div>
-                    @Html.ActionLink("Back to Products", "Index", new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Back to Products", "Index")
                     @if (User.IsInRole("Admin"))
                     {
-                    <div>
-                        @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id= Model.ProductID })
-                    </div>
+                        <div>
+                            @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = Model.ProductID })
+                        </div>
                     }
                 </div>
             </div>

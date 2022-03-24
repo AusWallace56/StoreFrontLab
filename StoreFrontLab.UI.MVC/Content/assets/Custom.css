@@ -1,4 +1,10 @@
-﻿#navcontainer.container {
+﻿main {
+    padding-top: 3.5em;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+#navcontainer.container {
     max-width: 1500px;
 }
 
@@ -10,6 +16,8 @@ td img {
 .ProdImg {
     max-height: 246px;
     max-width: 246px;
+    min-height: 246px;
+    min-width: 246px;
 }
 
 .ProdPagination {
@@ -42,7 +50,8 @@ td img {
         background-color: #2a2a2a;
         color: #fff;
     }
-    .pagination-container {
+
+.pagination-container {
     padding-bottom: 2em;
     left: 50%;
 }
@@ -51,3 +60,15 @@ td img {
     padding-left: 20em;
     margin-top: 2em;
 }
+
+.btn {
+    background-color: #fff;
+    color: #2a2a2a;
+    border: 1px solid #2a2a2a;
+    border-radius: 10%;
+}
+
+    .btn:hover {
+        background-color: #2a2a2a;
+        color: #fff;
+    }

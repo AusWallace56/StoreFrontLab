@@ -9,10 +9,10 @@
     int totalCountOfItems = 0;
 }
 
-<h2>@ViewBag.Title</h2>
+<h2 style="padding-top:1.3em;">@ViewBag.Title</h2>
 
 
-@Html.ActionLink("Back to Shopping", "Index","Products", null, new { @class = "btn btn-danger"})
+
 
 @if (ViewBag.Message != null)
 {
@@ -23,7 +23,7 @@ else
     <table class="table">
         <tr>
             <th>Product Image</th>
-            <th>Title</th>
+            <th>Product Name</th>
             <th>Price</th>
             <th>Quantity</th>
             <th>Total</th>
@@ -46,51 +46,52 @@ else
                     @using (Html.BeginForm("UpdateCart", "ShoppingCart", FormMethod.Post))
                     {
                         @Html.Hidden("productID", item.Value.Item.ProductID)
-                        @Html.TextBox("qty", item.Value.Qty, new { @class = "form-control", style = "max-width: 75px; display: inline;"})
+                        @Html.TextBox("qty", item.Value.Qty, new { @class = "form-control", style = "max-width: 75px; display: inline;" })
 
-                    <input type="submit" value="Update Quantity" class="btn btn-primary"/>
+                        <input type="submit" value="Update Quantity" class="btn btn-primary" />
                     }
                     @{ totalCountOfItems += item.Value.Qty;}
                 </td>
                 <td>
-                    @{ 
+                    @{
                         decimal? lineTotal = item.Value.Item.Price * item.Value.Qty;
                         cartTotal += lineTotal;
                     }
                     @string.Format($"{lineTotal:c}")
                 </td>
                 <td>
-                    @Html.ActionLink("Remove From Cart", "RemoveFromCart", new { id = item.Value.Item.ProductID})
+                    @Html.ActionLink("Remove From Cart", "RemoveFromCart", new { id = item.Value.Item.ProductID })
                 </td>
             </tr>
         }
     </table>
-    
+
     <p>
         You have @totalCountOfItems @(totalCountOfItems > 1 ? "items" : "item") in your cart.
         Your total before taxes and shipping is @string.Format($"{cartTotal:c}")
     </p>
+    @Html.ActionLink("Back to Shopping", "Index", "Products", null, new { @class = "btn btn-danger" })
 }
 
 @*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Qty)
-        </th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Qty)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Qty)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qty)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
 
-</table>*@
+    </table>*@

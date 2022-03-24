@@ -1672,6 +1672,7 @@ Products Page
 #products .item .thumb .hover-content ul li {
   display: inline;
   margin: 0px 10px;
+  padding-right: 5em;
 }
 
 #products .item .thumb .hover-content ul li a {
