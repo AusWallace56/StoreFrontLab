@@ -164,33 +164,33 @@ namespace StoreFrontLab.UI.MVC.Controllers
             return View(product);
         }
 
-        // GET: Products/Delete/5
-        [Authorize(Roles = "Admin")]
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Product product = db.Products.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            return View(product);
-        }
+        //// GET: Products/Delete/5
+        //[Authorize(Roles = "Admin")]
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Product product = db.Products.Find(id);
+        //    if (product == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(product);
+        //}
 
-        // POST: Products/Delete/5
-        [Authorize(Roles = "Admin")]
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Product product = db.Products.Find(id);
-            db.Products.Remove(product);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// POST: Products/Delete/5
+        //[Authorize(Roles = "Admin")]
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Product product = db.Products.Find(id);
+        //    db.Products.Remove(product);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {
@@ -201,6 +201,16 @@ namespace StoreFrontLab.UI.MVC.Controllers
             base.Dispose(disposing);
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public JsonResult AjaxDelete(int id)
+        {
+            Product product = db.Products.Find(id);
+            db.Products.Remove(product);
+            db.SaveChanges();
+
+            string confirmMessage = string.Format($"Deleted product {product.ProductName} from the database.");
+            return Json(new { id = id, message = confirmMessage });
+        }
 
         #region Add To Cart
 
@@ -227,14 +237,14 @@ namespace StoreFrontLab.UI.MVC.Controllers
             {
                 CartItemViewModel prod = new CartItemViewModel(qty, item);
 
-                if (shoppingCart.ContainsKey(item.ProductID))
-                {
-                    shoppingCart[item.ProductID].Qty += qty;
-                }
-                else
-                {
-                    shoppingCart.Add(item.ProductID, prod);
-                }
+                    if (shoppingCart.ContainsKey(item.ProductID))
+                    {
+                        shoppingCart[item.ProductID].Qty += qty;
+                    }
+                    else
+                    {
+                        shoppingCart.Add(item.ProductID, prod);
+                    }
                 Session["cart"] = shoppingCart;
             }
             return RedirectToAction("Index", "ShoppingCart");

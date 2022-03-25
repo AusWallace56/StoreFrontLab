@@ -5,12 +5,7 @@
 }
 
 <h2>@ViewBag.Title</h2>
-@if (User.IsInRole("admin"))
-{
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-}
+
 @*<div class="row panel panel-success" style="padding-top: 3em;">
         <br />
         <form method="get" action="/Products/Index" class="form-horizontal pull-left">
@@ -47,14 +42,18 @@
         </div>
     </div>
 </div>
-<div class="search">
 
-</div>
 <div class="row" style="padding-left: 3em;">
     <div class="col-md-6">
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
         @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchFilter = ViewBag.SearchFilter }), new PagedListRenderOptions() { LiElementClasses = new List<string> { "ProdPagination" } })
+        @if (User.IsInRole("Admin"))
+        {
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+        }
     </div>
     <form method="get" action="/Products/Index" class="search">
         <div class="col-md-6">
@@ -82,7 +81,7 @@
                         <div class="thumb">
                             <div class="hover-content">
                                 <ul>
-                                    <li><a href="@Url.Action("Details","Products", new { id = item.ProductID})"><i class="fa fa-eye"></i></a></li> 
+                                    <li><a href="@Url.Action("Details","Products", new { id = item.ProductID})"><i class="fa fa-eye"></i></a></li>
                                 </ul>
                             </div>
                             <img class="ProdImg" src="~/Content/assets/images/products/@item.Image" alt="@item.ProductName" />

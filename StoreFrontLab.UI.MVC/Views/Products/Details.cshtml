@@ -4,11 +4,11 @@
     ViewBag.Title = $"{Model.ProductName}";
 }
 <section class="section" id="product" style="padding-top: 3.5em;">
-    <div class="container">
+    <div class="container" id="prodRemove">
         <div class="row">
             <div class="col-lg-8">
                 <div class="left-images">
-                    <img style="padding-right: 1em;" src="~/Content/assets/images/products/@Model.Image" alt="@Model.ProductName">
+                    <img class="detailsImg" src="~/Content/assets/images/products/@Model.Image" alt="@Model.ProductName">
                 </div>
             </div>
             <div class="col-lg-4">
@@ -37,7 +37,14 @@
                     {
                         <div>
                             @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = Model.ProductID })
+                            @*@Html.ActionLink("Delete", "Delete", new { id = Model.ProductID })*@
+                            @Ajax.ActionLink("Delete", "AjaxDelete", "Products", new { id = Model.ProductID}, new AjaxOptions {
+                           HttpMethod = "POST",
+                           Confirm = $"Are you sure you want to delete {Model.ProductName} from products?",
+                           OnSuccess = "deleteConfirmed",
+                           OnFailure = "deleteFailed"
+                       }
+                       )
                         </div>
                     }
                 </div>
@@ -45,3 +52,21 @@
         </div>
     </div>
 </section>
+
+@section scripts {
+    
+    <script>
+        function deleteConfirmed(response, status, data) {
+
+            $("#prodRemove").remove();
+
+            $("#MessageContent").html("<div class='alert alert-success'>" + response.message + "</div>");
+        }
+
+        function deleteFailed(response, status, data) {
+
+            $("#MessageContent").html("<div class='alert alert-danger'>Delete unsuccessful.</div>");
+        }
+    </script>
+    
+    }

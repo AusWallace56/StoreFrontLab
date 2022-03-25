@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿@model StoreFrontLab.DATA.EF.Product
 <html lang="en">
 
 
@@ -14,13 +14,13 @@
                     <div class="left-content">
                         <div class="thumb">
                             <div class="inner-content">
-                                <h4>We Are Hexashop</h4>
-                                <span>Awesome, clean &amp; creative HTML5 Template</span>
+                                <h4>Retired Bricks</h4>
+                                <span>If we don't have it, we'll find it. </span>
                                 <div class="main-border-button">
-                                    <a href="#">Purchase Now!</a>
+                                    <a href="@Url.Action("Index","Products")">Products</a>
                                 </div>
                             </div>
-                            <img src="~/Content/assets/images/left-banner-image.jpg" alt="">
+                            <img src="~/Content/assets/images/homeleft (1).jpg" alt="" style="">
                         </div>
                     </div>
                 </div>
@@ -31,19 +31,19 @@
                                 <div class="right-first-image">
                                     <div class="thumb">
                                         <div class="inner-content">
-                                            <h4>Women</h4>
-                                            <span>Best Clothes For Women</span>
+                                            <h4>Mini Figures</h4>
+                                            <span>Singles/Packs</span>
                                         </div>
                                         <div class="hover-content">
                                             <div class="inner">
-                                                <h4>Women</h4>
-                                                <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
+                                                <h4>Mini Figures</h4>
+                                                <p>Find your favorite to add to the collection!</p>
                                                 <div class="main-border-button">
-                                                    <a href="#">Discover More</a>
+                                                    <a href="#">See Latest</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <img src="~/Content/assets/images/baner-right-image-01.jpg">
+                                        <img src="~/Content/assets/images/minifigs (1).jpg">
                                     </div>
                                 </div>
                             </div>
@@ -51,19 +51,19 @@
                                 <div class="right-first-image">
                                     <div class="thumb">
                                         <div class="inner-content">
-                                            <h4>Men</h4>
-                                            <span>Best Clothes For Men</span>
+                                            <h4>Full Sets</h4>
+                                            <span>No pieces missing!</span>
                                         </div>
                                         <div class="hover-content">
                                             <div class="inner">
-                                                <h4>Men</h4>
-                                                <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
+                                                <h4>Full Sets</h4>
+                                                <p>Original packaging (may be opened) and instructions included.</p>
                                                 <div class="main-border-button">
-                                                    <a href="#">Discover More</a>
+                                                    <a href="#">See Latest</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <img src="~/Content/assets/images/baner-right-image-02.jpg">
+                                        <img src="~/Content/assets/images/fullsets (1).jpg" />
                                     </div>
                                 </div>
                             </div>
@@ -71,19 +71,19 @@
                                 <div class="right-first-image">
                                     <div class="thumb">
                                         <div class="inner-content">
-                                            <h4>Kids</h4>
-                                            <span>Best Clothes For Kids</span>
+                                            <h4>Bricks</h4>
+                                            <span>Hard to find loose bricks</span>
                                         </div>
                                         <div class="hover-content">
                                             <div class="inner">
-                                                <h4>Kids</h4>
-                                                <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
+                                                <h4>Bricks</h4>
+                                                <p>Baseplates, Serious Play, and loose sets.</p>
                                                 <div class="main-border-button">
-                                                    <a href="#">Discover More</a>
+                                                    <a href="#">See Latest</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <img src="~/Content/assets/images/baner-right-image-03.jpg">
+                                        <img src="~/Content/assets/images/bricks (1).jpg">
                                     </div>
                                 </div>
                             </div>
@@ -91,19 +91,19 @@
                                 <div class="right-first-image">
                                     <div class="thumb">
                                         <div class="inner-content">
-                                            <h4>Accessories</h4>
-                                            <span>Best Trend Accessories</span>
+                                            <h4>Storage</h4>
+                                            <span>Keep track of those pesky bricks</span>
                                         </div>
                                         <div class="hover-content">
                                             <div class="inner">
-                                                <h4>Accessories</h4>
-                                                <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
+                                                <h4>Storage</h4>
+                                                <p>Storage and display pieces to keep you organized.</p>
                                                 <div class="main-border-button">
-                                                    <a href="#">Discover More</a>
+                                                    <a href="#">See Latest</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <img src="~/Content/assets/images/baner-right-image-04.jpg">
+                                        <img src="~/Content/assets/images/storage (1).jpg">
                                     </div>
                                 </div>
                             </div>
@@ -134,7 +134,7 @@
                             <div class="item">
                                 <div class="thumb">
                                     <div class="hover-content">
-                                        <ul>
+                                         <ul>
                                             <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
                                             <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
                                             <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
@@ -462,70 +462,21 @@
         </div>
     </section>
     <!-- ***** Kids Area Ends ***** -->
-    <!-- ***** Explore Area Starts ***** -->
-    <section class="section" id="explore">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="left-content">
-                        <h2>Explore Our Products</h2>
-                        <span>You are allowed to use this HexaShop HTML CSS template. You can feel free to modify or edit this layout. You can convert this template as any kind of ecommerce CMS theme as you wish.</span>
-                        <div class="quote">
-                            <i class="fa fa-quote-left"></i><p>You are not allowed to redistribute this template ZIP file on any other website.</p>
-                        </div>
-                        <p>There are 5 pages included in this HexaShop Template and we are providing it to you for absolutely free of charge at our TemplateMo website. There are web development costs for us.</p>
-                        <p>If this template is beneficial for your website or business, please kindly <a rel="nofollow" href="https://paypal.me/templatemo" target="_blank">support us</a> a little via PayPal. Please also tell your friends about our great website. Thank you.</p>
-                        <div class="main-border-button">
-                            <a href="products.html">Discover More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="right-content">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="leather">
-                                    <h4>Leather Bags</h4>
-                                    <span>Latest Collection</span>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="first-image">
-                                    <img src="~/Content/assets/images/explore-image-01.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="second-image">
-                                    <img src="~/Content/assets/images/explore-image-02.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="types">
-                                    <h4>Different Types</h4>
-                                    <span>Over 304 Products</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ***** Explore Area Ends ***** -->
-  
+
+
 
     <script>
 
-        $(function() {
+        $(function () {
             var selectedClass = "";
-            $("p").click(function(){
-            selectedClass = $(this).attr("data-rel");
-            $("#portfolio").fadeTo(50, 0.1);
-                $("#portfolio div").not("."+selectedClass).fadeOut();
-            setTimeout(function() {
-              $("."+selectedClass).fadeIn();
-              $("#portfolio").fadeTo(50, 1);
-            }, 500);
+            $("p").click(function () {
+                selectedClass = $(this).attr("data-rel");
+                $("#portfolio").fadeTo(50, 0.1);
+                $("#portfolio div").not("." + selectedClass).fadeOut();
+                setTimeout(function () {
+                    $("." + selectedClass).fadeIn();
+                    $("#portfolio").fadeTo(50, 1);
+                }, 500);
 
             });
         });

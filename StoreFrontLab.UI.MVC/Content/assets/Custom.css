@@ -1,5 +1,4 @@
 ﻿main {
-    padding-top: 3.5em;
     padding-left: 2em;
     padding-right: 2em;
 }
@@ -72,3 +71,10 @@ td img {
         background-color: #2a2a2a;
         color: #fff;
     }
+
+.detailsImg {
+    padding-right: 1em;
+    width: 714px;
+    height: 714px;
+}
+
