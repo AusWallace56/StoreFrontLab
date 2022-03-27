@@ -24,12 +24,15 @@
                     <span>@Model.Description</span>
 
                     <div class="main-border-button">
+
                         @using (Html.BeginForm("AddToCart", "Products", new { productID = Model.ProductID }, FormMethod.Post))
                         {
+                           
                             @Html.HiddenFor(x => x.ProductID)
                             <span class="label">Quantity</span>
                             @Html.TextBox("Qty", 1, new { @class = "form-control", @style = "max-width: 50px; display: inline; margin-right: 1em;" })
-                            <input type="submit" value="Add to Cart" class="btn" name="qty" />
+                                <input type="submit" value="Add to Cart" class="btn" name="qty" />
+                            
                         }
                     </div>
                     @Html.ActionLink("Back to Products", "Index")
