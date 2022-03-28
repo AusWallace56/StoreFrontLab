@@ -43,19 +43,22 @@
 </div>
 
 <div class="row" style="padding-left: 3em;">
-    <div class="col-md-6">
+    <div class="col-md-4">
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
         @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchFilter = ViewBag.SearchFilter }), new PagedListRenderOptions() { LiElementClasses = new List<string> { "ProdPagination" } })
+     
+    </div>
+    <div class="col-md-2" style="padding-left:10em; padding-top:1em;">
         @if (User.IsInRole("Admin"))
         {
             <p>
-                @Html.ActionLink("Create New", "Create")
+                @Html.ActionLink("Create New", "Create", null, new { @class = "btn"})
             </p>
         }
     </div>
     <form method="get" action="/Products/Index" class="search">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div>
                 <input type="text" name="searchFilter" value="Search by Category" />
             </div>

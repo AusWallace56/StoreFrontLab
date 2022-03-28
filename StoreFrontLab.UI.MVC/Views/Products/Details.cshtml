@@ -41,7 +41,8 @@
                         <div>
                             @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |
                             @*@Html.ActionLink("Delete", "Delete", new { id = Model.ProductID })*@
-                            @Ajax.ActionLink("Delete", "AjaxDelete", "Products", new { id = Model.ProductID}, new AjaxOptions {
+                            @Ajax.ActionLink("Delete", "AjaxDelete", "Products", new { id = Model.ProductID}, new AjaxOptions
+                       {
                            HttpMethod = "POST",
                            Confirm = $"Are you sure you want to delete {Model.ProductName} from products?",
                            OnSuccess = "deleteConfirmed",
@@ -59,14 +60,16 @@
 @section scripts {
     
     <script>
-        function deleteConfirmed(response, status, data) {
+        function deleteConfirmed(response, status, data)
+        {
 
             $("#prodRemove").remove();
 
             $("#MessageContent").html("<div class='alert alert-success'>" + response.message + "</div>");
         }
 
-        function deleteFailed(response, status, data) {
+        function deleteFailed(response, status, data)
+        {
 
             $("#MessageContent").html("<div class='alert alert-danger'>Delete unsuccessful.</div>");
         }

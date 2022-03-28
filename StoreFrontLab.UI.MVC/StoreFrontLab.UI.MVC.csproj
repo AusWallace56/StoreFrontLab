@@ -209,7 +209,6 @@
     <Content Include="Content\assets\images\AboutUs.jpg" />
     <Content Include="Content\assets\images\Bookshop.jpeg" />
     <Content Include="Content\assets\images\bricks %281%29.jpg" />
-    <Content Include="Content\assets\images\Cart.jpg" />
     <Content Include="Content\assets\images\Connections.png" />
     <Content Include="Content\assets\images\Contact.jpg" />
     <Content Include="Content\assets\images\fullsets %281%29.jpg" />
@@ -220,6 +219,7 @@
     <Content Include="Content\assets\images\LegoDubai.jpg" />
     <Content Include="Content\assets\images\LegoStore.jpg" />
     <Content Include="Content\assets\images\minifigs %281%29.jpg" />
+    <Content Include="Content\assets\images\Cart.jpg" />
     <Content Include="Content\assets\images\products\LegoDubai.jpg" />
     <Content Include="Content\assets\images\products\noImage.png" />
     <Content Include="Content\assets\images\Rollercoaster.jpeg" />
