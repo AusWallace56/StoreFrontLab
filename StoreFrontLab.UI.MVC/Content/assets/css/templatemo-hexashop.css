@@ -652,7 +652,6 @@ banner
 
 .main-banner {
   border-bottom: 3px dotted #eee;
-  padding-top: 160px;
   padding-bottom: 30px;
 }
 
@@ -1580,7 +1579,6 @@ Products Page
 */
 
 .page-heading {
-    margin-top: 160px;
     margin-bottom: 30px;
     background-image: url('../images/Heads1.jpg');
     background-position: center center;
@@ -1589,7 +1587,6 @@ Products Page
 }
 
 .cart-page-heading {
-    margin-top: 160px;
     margin-bottom: 30px;
     background-image: url('../images/Cart.jpg');
     background-position: center center;
@@ -1935,7 +1932,6 @@ About Us Page
 */
 
 .about-page-heading {
-    margin-top: 160px;
     margin-bottom: 30px;
     background-image: url('../images/Contact.jpg');
     background-position: center center;

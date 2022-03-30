@@ -4,8 +4,6 @@
     ViewBag.Title = "Products";
 }
 
-<h2>@ViewBag.Title</h2>
-
 @*<div class="row panel panel-success" style="padding-top: 3em;">
         <br />
         <form method="get" action="/Products/Index" class="form-horizontal pull-left">
@@ -60,7 +58,7 @@
     <form method="get" action="/Products/Index" class="search">
         <div class="col-md-4">
             <div>
-                <input type="text" name="searchFilter" value="Search by Category" />
+                <input type="text" name="searchFilter" placeholder="Search by Category" />
             </div>
             @if (ViewBag.ResultCount != null)
             {

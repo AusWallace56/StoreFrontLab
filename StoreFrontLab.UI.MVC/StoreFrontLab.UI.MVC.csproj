@@ -174,6 +174,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomErrorController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -211,6 +212,7 @@
     <Content Include="Content\assets\images\bricks %281%29.jpg" />
     <Content Include="Content\assets\images\Connections.png" />
     <Content Include="Content\assets\images\Contact.jpg" />
+    <Content Include="Content\assets\images\Error.jpg" />
     <Content Include="Content\assets\images\fullsets %281%29.jpg" />
     <Content Include="Content\assets\images\GreenBase.jpeg" />
     <Content Include="Content\assets\images\GreyBase.jpg" />
@@ -419,6 +421,8 @@
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\CustomError\Index.cshtml" />
+    <Content Include="Views\Products\ProductEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

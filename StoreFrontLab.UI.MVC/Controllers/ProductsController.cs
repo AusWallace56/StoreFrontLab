@@ -104,65 +104,65 @@ namespace StoreFrontLab.UI.MVC.Controllers
         }
 
         // GET: Products/Edit/5
-        [Authorize(Roles = "Admin")]
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Product product = db.Products.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", product.CategoryID);
-            ViewBag.StockStatusID = new SelectList(db.StockStatuses, "StockStatusID", "StockStatusName", product.StockStatusID);
-            return View(product);
-        }
+        //[Authorize(Roles = "Admin")]
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Product product = db.Products.Find(id);
+        //    if (product == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", product.CategoryID);
+        //    ViewBag.StockStatusID = new SelectList(db.StockStatuses, "StockStatusID", "StockStatusName", product.StockStatusID);
+        //    return View(product);
+        //}
 
-        // POST: Products/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public ActionResult Edit([Bind(Include = "ProductID,ProductName,CategoryID,Price,StockStatusID,Quantity,Description")] Product product, HttpPostedFileBase productImage)
-        {
-            if (ModelState.IsValid)
-            {
+        //// POST: Products/Edit/5
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[Authorize(Roles = "Admin")]
+        //public ActionResult Edit([Bind(Include = "ProductID,ProductName,CategoryID,Price,StockStatusID,Quantity,Description")] Product product, HttpPostedFileBase productImage)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
 
-                if (productImage != null)
-                {
-                    string imageName = productImage.FileName;
+        //        if (productImage != null)
+        //        {
+        //            string imageName = productImage.FileName;
 
-                    string ext = imageName.Substring(imageName.LastIndexOf('.'));
+        //            string ext = imageName.Substring(imageName.LastIndexOf('.'));
 
-                    string[] goodExts = new string[] { ".jpeg", ".jpg", ".png", ".gif" };
+        //            string[] goodExts = new string[] { ".jpeg", ".jpg", ".png", ".gif" };
 
-                    if (goodExts.Contains(ext.ToLower()))
-                    {
-                        imageName = Guid.NewGuid() + ext;
+        //            if (goodExts.Contains(ext.ToLower()))
+        //            {
+        //                imageName = Guid.NewGuid() + ext;
 
-                        productImage.SaveAs(Server.MapPath("~/Content/assets/images/products/" + imageName));
+        //                productImage.SaveAs(Server.MapPath("~/Content/assets/images/products/" + imageName));
 
-                        string currentFile = Request.Params["productImage"];
-                        if (currentFile != "noImage.png" && currentFile != null)
-                        {
-                            System.IO.File.Delete(Server.MapPath("~/Content/assets/images/products/" + currentFile));
-                        }
-                    }
-                    product.Image = imageName;
-                }
+        //                string currentFile = Request.Params["productImage"];
+        //                if (currentFile != "noImage.png" && currentFile != null)
+        //                {
+        //                    System.IO.File.Delete(Server.MapPath("~/Content/assets/images/products/" + currentFile));
+        //                }
+        //            }
+        //            product.Image = imageName;
+        //        }
 
-                db.Entry(product).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", product.CategoryID);
-            ViewBag.StockStatusID = new SelectList(db.StockStatuses, "StockStatusID", "StockStatusName", product.StockStatusID);
-            return View(product);
-        }
+        //        db.Entry(product).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", product.CategoryID);
+        //    ViewBag.StockStatusID = new SelectList(db.StockStatuses, "StockStatusID", "StockStatusName", product.StockStatusID);
+        //    return View(product);
+        //}
 
         //// GET: Products/Delete/5
         //[Authorize(Roles = "Admin")]
@@ -211,6 +211,49 @@ namespace StoreFrontLab.UI.MVC.Controllers
             string confirmMessage = string.Format($"Deleted product {product.ProductName} from the database.");
             return Json(new { id = id, message = confirmMessage });
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public PartialViewResult ProductEdit(int id)
+        {
+            Product product = db.Products.Find(id);
+            return PartialView(product);
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+        public JsonResult AjaxEdit(Product product, HttpPostedFileBase productImage)
+        {
+            if (productImage != null)
+            {
+                string imageName = productImage.FileName;
+
+                string ext = imageName.Substring(imageName.LastIndexOf('.'));
+
+                string[] goodExts = new string[] { ".jpeg", ".jpg", ".png", ".gif" };
+
+                if (goodExts.Contains(ext.ToLower()))
+                {
+                    imageName = Guid.NewGuid() + ext;
+
+                    productImage.SaveAs(Server.MapPath("~/Content/assets/images/products/" + imageName));
+
+                    string currentFile = Request.Params["productImage"];
+                    if (currentFile != "noImage.png" && currentFile != null)
+                    {
+                        System.IO.File.Delete(Server.MapPath("~/Content/assets/images/products/" + currentFile));
+                    }
+                }
+                product.Image = imageName;
+            }
+
+            db.Entry(product).State = EntityState.Modified;
+            db.SaveChanges();
+            return Json(product);
+        }
+
 
         #region Add To Cart
 
