@@ -4,6 +4,11 @@
     ViewBag.Title = $"{Model.ProductName}";
 }
 <section class="section" id="product">
+    <div class="row">
+        <div class="col-md-3">
+            @Html.ActionLink("Back to Products", "Index", "Products", null, new { @class = "btn" })
+        </div>
+    </div>
     <div class="container" id="prodRemove">
         <div class="row" id="Product-@Model.ProductID">
             <div class="col-lg-8">
@@ -23,7 +28,7 @@
                     </ul>
                     <span>@Model.Description</span>
 
-                    <div class="main-border-button">
+                    <div class="main-border-button" style="border-bottom: 1px solid #eee; padding-bottom: 1em;">
 
                         @using (Html.BeginForm("AddToCart", "Products", new { productID = Model.ProductID }, FormMethod.Post))
                         {
@@ -35,12 +40,12 @@
 
                         }
                     </div>
-                    @Html.ActionLink("Back to Products", "Index")
+
                     @if (User.IsInRole("Admin"))
                     {
                         <div>
-                            @*@Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |*@
-                            <a href="" class="EditLink" id="@Model.ProductID">Edit</a> |
+                            @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |
+                            @*<a href="" class="EditLink" id="@Model.ProductID">Edit</a> |*@
 
                             @*@Html.ActionLink("Delete", "Delete", new { id = Model.ProductID })*@
                             @Ajax.ActionLink("Delete", "AjaxDelete", "Products", new { id = Model.ProductID}, new AjaxOptions
@@ -60,32 +65,35 @@
 </section>
 
 @section scripts {
-    
+
     <script>
         //AJAX DELETE
-        function deleteConfirmed(response, status, data)
-        {
+        function deleteConfirmed(response, status, data) {
 
             $("#prodRemove").remove();
 
             $("#MessageContent").html("<div class='alert alert-success'>" + response.message + "</div>");
         }
 
-        function deleteFailed(response, status, data)
-        {
+        function deleteFailed(response, status, data) {
 
             $("#MessageContent").html("<div class='alert alert-danger'>Delete unsuccessful.</div>");
         }
 
-        //AJAX EDIT
-        var originalContent = null;
-        $("a.EditLink").click(function (e) {
-            e.preventDefault();
-            var productID = $(this).attr("id");
+        ////AJAX EDIT
+        //var originalContent = null;
+        //$("a.EditLink").click(function (e) {
+        //    e.preventDefault();
+        //    var productID = $(this).attr("id");
 
+        //    var prod = $("#Product-" + productID);
 
-            }
-        });
+        //    $.get("/Products/ProductEdit/" + productID, function (data) {
+        //        $("#Product-" + productID)
+        //    });
+
+        //}
+        //    });
     </script>
-    
-    }
+
+}

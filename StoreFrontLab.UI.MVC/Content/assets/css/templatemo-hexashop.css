@@ -1739,12 +1739,8 @@ Single Product Page
 --------------------------------------------- 
 */
 
-#product {
-  margin-top: 80px;
-}
 
 #product .left-images img {
-  width: 100%;
   overflow: hidden;
   margin-bottom: 30px;
 }

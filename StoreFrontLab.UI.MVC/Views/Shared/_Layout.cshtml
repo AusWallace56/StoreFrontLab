@@ -91,6 +91,7 @@
                             @if (User.IsInRole("Admin"))
                             {
                                 <li><a href="@Url.Action("Index", "Employees")">Employees</a></li>
+                                <li><a href="@Url.Action("Error", "Error")">Error</a></li>
                             }
                             @Html.Partial("_LoginPartial")
 

@@ -1,6 +1,6 @@
 ﻿@model StoreFrontLab.DATA.EF.Product
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("AjaxEdit", "Products", FormMethod.Post, new { id = "ProductEditForm" }))
 {
     @Html.AntiForgeryToken()
     
